@@ -25,6 +25,11 @@ namespace WebApi
 			services.AddControllers();
 			services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AppConnectionString")));
 
+			services.AddControllersWithViews()
+				.AddNewtonsoftJson(options =>
+				options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+			);
+
 			// Swagger API documentation injection
 			services.AddSwaggerGen(x =>
 			{

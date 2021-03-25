@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApi.Data;
@@ -10,7 +8,7 @@ using WebApi.Model;
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/companies")]
     [ApiController]
     public class CompaniesController : ControllerBase
     {
@@ -21,14 +19,21 @@ namespace WebApi.Controllers
             _context = context;
         }
 
-        // GET: api/Companies
+        /// <summary>
+        /// GET request to retrieve all companies
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Company>>> GetCompanies()
         {
             return await _context.Companies.ToListAsync();
         }
 
-        // GET: api/Companies/5
+        /// <summary>
+        /// GET request to retrieve a company by its ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<Company>> GetCompany(int id)
         {
@@ -42,9 +47,12 @@ namespace WebApi.Controllers
             return company;
         }
 
-        // PUT: api/Companies/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        /// <summary>
+        /// PUT request to update an existing company
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="company"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCompany(int id, Company company)
         {
@@ -74,9 +82,11 @@ namespace WebApi.Controllers
             return NoContent();
         }
 
-        // POST: api/Companies
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        /// <summary>
+        /// POST request to create a new company
+        /// </summary>
+        /// <param name="company"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult<Company>> PostCompany(Company company)
         {
@@ -86,7 +96,11 @@ namespace WebApi.Controllers
             return CreatedAtAction("GetCompany", new { id = company.ID }, company);
         }
 
-        // DELETE: api/Companies/5
+        /// <summary>
+        /// DELETE request to delete an existing company by its ID.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<ActionResult<Company>> DeleteCompany(int id)
         {
@@ -102,6 +116,11 @@ namespace WebApi.Controllers
             return company;
         }
 
+        /// <summary>
+        /// Check if the company exists in its context, before adding it.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         private bool CompanyExists(int id)
         {
             return _context.Companies.Any(e => e.ID == id);

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApi.Data;
@@ -10,7 +8,7 @@ using WebApi.Model;
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/jobs")]
     [ApiController]
     public class JobsController : ControllerBase
     {
@@ -21,14 +19,21 @@ namespace WebApi.Controllers
             _context = context;
         }
 
-        // GET: api/Jobs
+        /// <summary>
+        /// GET request to retrieve all jobs
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Job>>> GetJobs()
         {
             return await _context.Jobs.ToListAsync();
         }
 
-        // GET: api/Jobs/5
+        /// <summary>
+        /// GET request to retrieve a job by its ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<Job>> GetJob(int id)
         {
@@ -42,9 +47,12 @@ namespace WebApi.Controllers
             return job;
         }
 
-        // PUT: api/Jobs/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        /// <summary>
+        /// PUT request to update an existing job by its ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="job"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutJob(int id, Job job)
         {
@@ -74,9 +82,11 @@ namespace WebApi.Controllers
             return NoContent();
         }
 
-        // POST: api/Jobs
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        /// <summary>
+        /// POST request to create a new job
+        /// </summary>
+        /// <param name="job"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult<Job>> PostJob(Job job)
         {
@@ -86,7 +96,11 @@ namespace WebApi.Controllers
             return CreatedAtAction("GetJob", new { id = job.ID }, job);
         }
 
-        // DELETE: api/Jobs/5
+        /// <summary>
+        /// DELETE request to delete an existing job by its ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<ActionResult<Job>> DeleteJob(int id)
         {
