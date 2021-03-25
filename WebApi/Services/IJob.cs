@@ -4,6 +4,11 @@ namespace WebApi.Services
 	public interface IJob
 	{
 		/// <summary>
+		/// ID
+		/// </summary>
+		int ID { get; set; }
+
+		/// <summary>
 		/// Job title
 		/// </summary>
 		string JobTitle { get; set; }

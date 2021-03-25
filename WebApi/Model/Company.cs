@@ -6,6 +6,11 @@ namespace WebApi.Model
 	public class Company : ICompany
 	{
 		/// <summary>
+		/// ID
+		/// </summary>
+		public int ID { get; set; }
+
+		/// <summary>
 		/// Name
 		/// </summary>
 		public string Name { get; set; }

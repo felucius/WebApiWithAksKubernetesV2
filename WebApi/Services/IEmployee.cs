@@ -5,6 +5,11 @@ namespace WebApi.Services
 	public interface IEmployee
 	{
 		/// <summary>
+		/// ID
+		/// </summary>
+		int ID { get; set; }
+
+		/// <summary>
 		/// Name
 		/// </summary>
 		string Name { get; set; }

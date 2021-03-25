@@ -5,6 +5,11 @@ namespace WebApi.Model
 	public class Job : IJob
 	{
 		/// <summary>
+		/// ID
+		/// </summary>
+		public int ID { get; set; }
+
+		/// <summary>
 		/// Job title
 		/// </summary>
 		public string JobTitle { get; set; }

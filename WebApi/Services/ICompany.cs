@@ -7,6 +7,11 @@ namespace WebApi.Services
 	public interface ICompany
 	{
 		/// <summary>
+		/// ID
+		/// </summary>
+		int ID { get; set; }
+
+		/// <summary>
 		/// Name
 		/// </summary>
 		string Name { get; set; }
