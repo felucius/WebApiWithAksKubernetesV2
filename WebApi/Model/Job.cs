@@ -1,11 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using WebApi.Services;
 
 namespace WebApi.Model
 {
-	public class Job
+	public class Job : IJob
 	{
+		/// <summary>
+		/// Job title
+		/// </summary>
+		public string JobTitle { get; set; }
+
+		/// <summary>
+		/// Working hours
+		/// </summary>
+		public int WorkingHours { get; set; }
+
+		/// <summary>
+		/// Salary
+		/// </summary>
+		public int Salary { get; set; }
+
+		public Job()
+		{
+
+		}
 	}
 }
